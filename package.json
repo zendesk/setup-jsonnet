@@ -19,6 +19,7 @@
   "homepage": "https://github.com/zendesk/setup-jsonnet#readme",
   "dependencies": {
     "@actions/core": "^1.2.4",
-    "@actions/exec": "^1.0.4"
+    "@actions/exec": "^1.0.4",
+    "@actions/io": "^1.0.2"
   }
 }
