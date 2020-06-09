@@ -71,6 +71,7 @@ const run = async () => {
   const destinationFolder = '$GITHUB_WORKSPACE/bin'
 
   await exec(`pwd`)
+  await exec(`echo $GITHUB_WORKSPACE`)
   await exec(`echo ${destinationFolder}`)
   await exec(`mkdir -p ${destinationFolder}`)
   await exec(`wget --quiet ${url} -O jsonnet.tar.gz`)
