@@ -69,16 +69,9 @@ const get = url => {
 const run = async () => {
   const url = await fetchReleases()
 
-  await exec(`mkdir -p bin`)
-  await exec(`wget --quiet ${url} -O jsonnet.tar.gz`)
-  await exec(`tar xvf jsonnet.tar.gz --directory bin`)
-  await exec('rm jsonnet.tar.gz')
-  core.addPath('$(pwd)/bin/')
-  await exec('which jsonnet')
-  await exec('which jsonnetfmt')
-  await exec('ls -larth')
-  await exec('echo $PATH')
-
+  await exec(`install-jsonnet.sh ${url}`)
+  await exec('jsonnet -v')
+  await exec('jsonnetfmt -v')
 }
 
 try {
