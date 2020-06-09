@@ -1,0 +1,35 @@
+name: Create release
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  release:
+    name: Create Release
+    steps:
+      # Check out latest commit from master (the commit that triggered this event)
+      - uses: zendesk/checkout@v2
+      # Compute the next tag using the continuous scheme (v1, v2, etc)
+      - name: Compute release tag
+        id: compute_tag
+        uses: zendesk/compute-tag@v10
+        with:
+          github_token: ${{ github.token }}
+          version_scheme: continuous
+          version_type: major
+      # Create a new GitHub release
+      - name: Create release
+        id: create_release
+        uses: zendesk/create-release@v1
+        with:
+          tag_name: ${{ steps.compute_tag.outputs.next_tag }}
+          release_name: ${{ steps.compute_tag.outputs.next_tag }}
+          body: |
+            See links below for changes in this release.
+            ### Links
+            * [Pull Request diff](https://github.com/${{ github.repository }}/compare/${{ github.sha }}..${{ steps.compute_tag.outputs.next_tag }})
+            * [Changes since last release](https://github.com/${{ github.repository }}/compare/${{ steps.compute_tag.outputs.previous_tag }}..${{ steps.compute_tag.outputs.next_tag }})
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
