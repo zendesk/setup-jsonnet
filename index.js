@@ -75,6 +75,9 @@ const run = async () => {
   await exec(`tar xvf jsonnet.tar.gz --directory ${destinationFolder}`)
   await exec('rm jsonnet.tar.gz')
   core.addPath(destinationFolder)
+  await exec('which jsonnet')
+  await exec('echo $PATH')
+
 }
 
 try {
