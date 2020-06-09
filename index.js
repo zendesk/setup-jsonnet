@@ -70,6 +70,7 @@ const run = async () => {
   const url = await fetchReleases()
   const destinationFolder = '$GITHUB_WORKSPACE/bin'
 
+  await exec(`echo ${destinationFolder}`)
   await exec(`mkdir -p ${destinationFolder}`)
   await exec(`wget --quiet ${url} -O jsonnet.tar.gz`)
   await exec(`tar xvf jsonnet.tar.gz --directory ${destinationFolder}`)
@@ -77,6 +78,7 @@ const run = async () => {
   core.addPath(destinationFolder)
   await exec('which jsonnet')
   await exec('which jsonnetfmt')
+  await exec('ls -larth')
   await exec('echo $PATH')
 
 }
