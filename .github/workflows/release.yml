@@ -8,6 +8,7 @@ on:
 jobs:
   release:
     name: Create Release
+    runs-on: ubuntu-latest
     steps:
       # Check out latest commit from master (the commit that triggered this event)
       - uses: zendesk/checkout@v2
