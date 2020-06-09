@@ -1,0 +1,24 @@
+{
+  "name": "setup-jsonnet",
+  "version": "1.0.0",
+  "description": "Github action to install a specific version of https://jsonnet.org/",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zendesk/setup-jsonnet.git"
+  },
+  "keywords": [],
+  "author": "Alex Glover",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/zendesk/setup-jsonnet/issues"
+  },
+  "homepage": "https://github.com/zendesk/setup-jsonnet#readme",
+  "dependencies": {
+    "@actions/core": "^1.2.4",
+    "@actions/exec": "^1.0.4"
+  }
+}

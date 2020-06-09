@@ -1,0 +1,18 @@
+name: Setup Jsonnet
+description: Install a version of Jsonnet and update $PATH to make it available to subsequent actions
+branding:
+  icon: code
+  color: gray-dark
+
+inputs:
+  version:
+    description: 'Version of Jsonnet to install. Default: `latest`'
+    required: false
+    default: latest
+  github_token:
+    description: A GitHub Token. This can help with rate limits when fetching releases.
+    required: false
+
+runs:
+  using: 'node12'
+  main: 'index.js'

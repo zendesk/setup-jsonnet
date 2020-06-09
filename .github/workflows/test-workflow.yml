@@ -1,0 +1,19 @@
+name: Test Workflow
+
+on: push
+
+jobs:
+  build:
+    name: Install Jsonnet and print version
+    runs-on: ubuntu-latest
+    steps:
+      - uses: zendesk/checkout@v2
+      - name: Setup Jsonnet
+        uses: ./
+        with:
+          version: v0.16.0
+          github_token: ${{ github.token }}
+      - name: Print Jsonnet version
+        run: jsonnet -v
+      - name: Print Jsonnet reformatter version
+        run: jsonnetfmt -v
