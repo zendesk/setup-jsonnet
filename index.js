@@ -70,6 +70,7 @@ const run = async () => {
   const url = await fetchReleases()
   const destinationFolder = '$GITHUB_WORKSPACE/bin'
 
+  await exec(`pwd`)
   await exec(`echo ${destinationFolder}`)
   await exec(`mkdir -p ${destinationFolder}`)
   await exec(`wget --quiet ${url} -O jsonnet.tar.gz`)
