@@ -2,6 +2,7 @@ const core = require('@actions/core')
 const io = require('@actions/io')
 const { exec } = require('@actions/exec')
 const https = require('https')
+const path = require('path')
 
 const fetchReleases = async () => {
   const version = core.getInput('version')
@@ -68,13 +69,8 @@ const get = url => {
 
 const run = async () => {
   const url = await fetchReleases()
-  const destinationFolder = './bin'
 
-  await io.mkdirP(destinationFolder);
-  await exec(`wget --quiet ${url} -O jsonnet.tar.gz`)
-  await exec(`tar xvf jsonnet.tar.gz --directory ${destinationFolder}`)
-  await exec('rm jsonnet.tar.gz')
-  core.addPath(destinationFolder)
+  await exec(path.join(__dirname, 'install-jsonnet.sh'), [url])
 }
 
 try {
