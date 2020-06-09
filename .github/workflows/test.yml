@@ -1,0 +1,33 @@
+name: Test
+
+on: push
+
+jobs:
+  install_specific_version:
+    name: Install specific version of Jsonnet and print version
+    runs-on: ubuntu-latest
+    steps:
+      - uses: zendesk/checkout@v2
+      - name: Setup Jsonnet
+        uses: ./
+        with:
+          version: v0.15.0
+          github_token: ${{ github.token }}
+      - name: Print Jsonnet version
+        run: jsonnet -v
+      - name: Print Jsonnet reformatter version
+        run: jsonnetfmt -v
+
+  install_latest:
+    name: Install latest version of Jsonnet and print version
+    runs-on: ubuntu-latest
+    steps:
+      - uses: zendesk/checkout@v2
+      - name: Setup Jsonnet
+        uses: ./
+        with:
+          github_token: ${{ github.token }}
+      - name: Print Jsonnet version
+        run: jsonnet -v
+      - name: Print Jsonnet reformatter version
+        run: jsonnetfmt -v
