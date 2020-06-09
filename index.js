@@ -69,7 +69,7 @@ const get = url => {
 const run = async () => {
   const url = await fetchReleases()
 
-  await exec(`install-jsonnet.sh ${url}`)
+  await exec(path.join(__dirname, 'install-jsonnet.sh'), [url])
   await exec('jsonnet -v')
   await exec('jsonnetfmt -v')
 }
