@@ -3,7 +3,7 @@
 echo "Downloading Jsonnet from: $1"
 wget --quiet $1 -O jsonnet.tar.gz
 
-mkdir bin
+mkdir -p bin
 tar xvf jsonnet.tar.gz --directory bin
 rm -f jsonnet.tar.gz
 
