@@ -1,11 +1,8 @@
 #!/bin/bash -ex
 
-echo "Downloading Jsonnet from: $1"
-wget --quiet "$1" -O jsonnet.tar.gz
-
-mkdir -p bin
-tar xvf jsonnet.tar.gz --directory bin
-rm -f jsonnet.tar.gz
+# Install go-jsonnet
+go get github.com/google/go-jsonnet/cmd/jsonnet
+go get github.com/google/go-jsonnet/cmd/jsonnetfmt
 
 # Add jsonnet executables to the path for future actions
-echo "$(pwd)/bin" >> "$GITHUB_PATH"
+echo "$HOME/go/bin" >> "$GITHUB_PATH"
