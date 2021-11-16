@@ -1,4 +1,6 @@
-#!/bin/bash -ex
+#!/bin/bash
+
+set -euo pipefail
 
 # Install go-jsonnet
 go get github.com/google/go-jsonnet/cmd/jsonnet
