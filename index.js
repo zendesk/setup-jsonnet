@@ -6,7 +6,7 @@ const path = require('path')
 
 const fetchReleases = async () => {
   const version = core.getInput('version')
-  const versionPath = version == 'latest' ? 'latest' : `tags/${version}`
+  const versionPath = version == 'latest' ? 'tags/0.17.0' : `tags/${version}`
   const url = `https://api.github.com/repos/google/jsonnet/releases/${versionPath}`
 
   core.info(`Fetching Jsonnet releases from ${url}`)
