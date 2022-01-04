@@ -3,7 +3,7 @@
 ![Latest Release](https://img.shields.io/github/v/release/zendesk/setup-jsonnet?label=Latest%20Release)
 ![Examples](https://github.com/zendesk/setup-jsonnet/workflows/Test/badge.svg?branch=master)
 
-A GitHub action to install a specific version of Jsonnet. This action will add
+A GitHub action to install a specific version of [Go Jsonnet](https://github.com/google/go-jsonnet). This action will add
 `jsonnet` and `jsonnetfmt` to the `PATH` making them available for subsequent
 actions.
 
