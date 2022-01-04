@@ -6,6 +6,8 @@ jobs:
   install_specific_version:
     name: Install specific version of Jsonnet and print version
     runs-on: ubuntu-latest
+    env:
+      version: v0.16.0
     steps:
       - uses: zendesk/checkout@v2
       - uses: zendesk/setup-go@v2
@@ -14,12 +16,24 @@ jobs:
       - name: Setup Jsonnet
         uses: ./
         with:
-          version: v0.16.12
+          version: ${{ env.version }}
           github_token: ${{ github.token }}
       - name: Print Jsonnet version
-        run: jsonnet -v
+        run: |
+          jsonnet_version=$(jsonnet -v)
+          echo "$jsonnet_version"
+          if [[ ${jsonnet_version} != *"$version"* ]];then
+            echo "Cannot find $version"
+            echo 1
+          fi
       - name: Print Jsonnet reformatter version
-        run: jsonnetfmt -v
+        run: |
+          jsonnet_version=$(jsonnetfmt -v)
+          echo "$jsonnet_version"
+          if [[ ${jsonnet_version} != *"$version"* ]];then
+            echo "Cannot find $version"
+            echo 1
+          fi
 
   install_latest:
     name: Install latest version of Jsonnet and print version

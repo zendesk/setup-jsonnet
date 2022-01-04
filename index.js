@@ -3,7 +3,8 @@ const { exec } = require('@actions/exec')
 const path = require('path')
 
 const run = async () => {
-  await exec(path.join(__dirname, 'install-jsonnet.sh'))
+  const version = core.getInput('version')
+  await exec(path.join(__dirname, 'install-jsonnet.sh'), version)
 }
 
 try {
