@@ -7,7 +7,7 @@ jobs:
     name: Install specific version of Jsonnet and print version
     runs-on: ubuntu-latest
     env:
-      version: v0.16.0
+      version: v0.18.0
     steps:
       - uses: zendesk/checkout@v2
       - uses: zendesk/setup-go@v2
@@ -34,6 +34,22 @@ jobs:
             echo "Cannot find $version"
             echo 1
           fi
+      - name: Print Jsonnet dependency parser version
+        run: |
+          jsonnet_version=$(jsonnet-deps -v)
+          echo "$jsonnet_version"
+          if [[ ${jsonnet_version} != *"$version"* ]];then
+            echo "Cannot find $version"
+            echo 1
+          fi
+      - name: Print Jsonnet linter version
+        run: |
+          jsonnet_version=$(jsonnet-lint -v)
+          echo "$jsonnet_version"
+          if [[ ${jsonnet_version} != *"$version"* ]];then
+            echo "Cannot find $version"
+            echo 1
+          fi
 
   install_latest:
     name: Install latest version of Jsonnet and print version
@@ -51,6 +67,10 @@ jobs:
         run: jsonnet -v
       - name: Print Jsonnet reformatter version
         run: jsonnetfmt -v
+      - name: Print Jsonnet dependency parser version
+        run: jsonnet-deps -v
+      - name: Print Jsonnet linter version
+        run: jsonnet-lint -v
 
   expected_failure_go:
     name: Expected failure due to outdated Go version
