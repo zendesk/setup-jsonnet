@@ -1,9 +1,11 @@
 #!/bin/bash -ex
-JSONNET=${JSONNET:-/usr/local/bin/sjsonnet}
 
-# Install https://github.com/databricks/sjsonnet
-version="${1:-0.4.3}"
+# Install go-jsonnet
+version="$1"
+go install "github.com/google/go-jsonnet/cmd/jsonnet@${version}"
+go install "github.com/google/go-jsonnet/cmd/jsonnetfmt@${version}"
+go install "github.com/google/go-jsonnet/cmd/jsonnet-deps@${version}"
+go install "github.com/google/go-jsonnet/cmd/jsonnet-lint@${version}"
 
-curl -L "https://github.com/databricks/sjsonnet/releases/download/${version}/sjsonnet.jar" > "$JSONNET"
-
-chmod +x "$JSONNET"
+# Add jsonnet executables to the path for future actions
+echo "$HOME/go/bin" >> "$GITHUB_PATH"
