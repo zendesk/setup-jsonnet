@@ -21,7 +21,7 @@ This Action has no outputs.
 ```yaml
 steps:
   - id: setup-jsonnet
-    uses: zendesk/setup-jsonnet@v1
+    uses: zendesk/setup-jsonnet@v10
 ```
 
 ### Install specific release of Jsonnet
@@ -29,7 +29,7 @@ steps:
 ```yaml
 steps:
   - id: setup-jsonnet
-    uses: zendesk/setup-jsonnet@v1
+    uses: zendesk/setup-jsonnet@v10
     with:
       version: v0.15.0
 ```
@@ -39,7 +39,7 @@ steps:
 ```yaml
 steps:
   - id: setup-jsonnet
-    uses: zendesk/setup-jsonnet@v1
+    uses: zendesk/setup-jsonnet@v10
     with:
       github_token: ${{ github.token }}
 ```
