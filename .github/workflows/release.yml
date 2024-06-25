@@ -11,11 +11,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       # Check out latest commit from master (the commit that triggered this event)
-      - uses: zendesk/checkout@v2
+      - uses: zendesk/checkout@v4
       # Compute the next tag using the continuous scheme (v1, v2, etc)
       - name: Compute release tag
         id: compute_tag
-        uses: zendesk/compute-tag@v10
+        uses: zendesk/compute-tag@v18
         with:
           github_token: ${{ github.token }}
           version_scheme: continuous
